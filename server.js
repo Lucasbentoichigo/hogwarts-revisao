@@ -1,12 +1,12 @@
 import express from "express";
 import dados from "./src/data/dados.js";
 
-const {bruxos, casas, varinhas, animais, pocoes} = dados;
+const { bruxos, casas, varinhas, animais, pocoes } = dados;
 
 const app = express();
 app.use(express.json());
 
-const serverPort = 3000;
+const serverPort = 3001;
 
 app.get("/", (req, res) => {
     res.send("O servidor está funcionando");
@@ -17,18 +17,20 @@ app.get("/bruxos", (req, res) => {
         res.status(200).json(bruxos);
     } else {
         res.status(404).json({
-            mensagem: "Nenhum bruxo encontrada!"
+            mensagem: "Nenhum bruxo encontrado!"
+        });
+    }
 });
 
-app.get("/casas", (req,res) => {
+app.get("/casas", (req, res) => {
     if (casas.length > 0) {
         res.status(200).json(casas);
     } else {
         res.status(404).json({
             mensagem: "Nenhuma casa encontrada!"
-        })
+        });
     }
-})
+});
 
 app.get("/varinhas", (req, res) => {
     if (varinhas.length > 0) {
@@ -36,23 +38,29 @@ app.get("/varinhas", (req, res) => {
     } else {
         res.status(404).json({
             mensagem: "Nenhuma varinha encontrada!"
-  });
-  
-  app.get("/animais", (req, res) => {
+        });
+    }
+});
+
+app.get("/animais", (req, res) => {
     if (animais.length > 0) {
         res.status(200).json(animais);
     } else {
         res.status(404).json({
             mensagem: "Nenhum animal encontrado!"
-  });
-  
-  app.get("/pocoes", (req, res) => {
+        });
+    }
+});
+
+app.get("/pocoes", (req, res) => {
     if (pocoes.length > 0) {
         res.status(200).json(pocoes);
     } else {
         res.status(404).json({
             mensagem: "Nenhuma poção encontrada!"
-  });
+        });
+    }
+});
 
 app.get("/bruxos/:id", (req, res) => {
     const id = parseInt(req.params.id);
@@ -85,12 +93,4 @@ app.get("/bruxos/nome/:nome", (req, res) => {
 
 app.listen(serverPort, () => {
     console.log(`Servidor rodando na porta ${serverPort}...`);
-})
-}
-})
-}
-})
-}
-})
-}
-})
+});
